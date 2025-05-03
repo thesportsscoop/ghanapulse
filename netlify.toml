@@ -1,35 +1,18 @@
 [build]
-  # Basic settings
-  command = "echo 'No build needed for static site'"
+  command = "echo 'Static site - no build needed'"
   publish = "."
-  functions = "netlify/functions"  # Standard functions directory
+  functions = "netlify/functions"
 
-[context.production.environment]
-  # Environment variables
-  CMS_ENABLED = "true"
-  SITE_URL = "https://ghanapulse.netlify.app"
+[context.production]
+  environment = { CMS_ENABLED = "true", SITE_URL = "https://ghanapulse.netlify.app" }
 
-# Redirects (critical for CMS)
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
   status = 200
 
-# Function proxy (replaces edge function)
-[[redirects]]
-  from = "/.netlify/functions/*"
-  to = "/.netlify/functions/:splat"
-  status = 200
-
-# Security headers
 [[headers]]
   for = "/*"
   [headers.values]
     Access-Control-Allow-Origin = "*"
     X-Frame-Options = "DENY"
-    X-XSS-Protection = "1; mode=block"
-
-# Function-specific settings
-[functions]
-  node_bundler = "esbuild"  # Faster builds
-  timeout = 10              # 10 second timeout
