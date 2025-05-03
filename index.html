@@ -6,48 +6,29 @@
   <title>GhanaPulse | Latest News</title>
   <link rel="stylesheet" href="css/style.css">
   <link rel="icon" href="images/favicon.ico">
-</head>
-<script>
-  if (window.netlifyIdentity) {
-    window.netlifyIdentity.on("init", user => {
-      if (!user) {
-        window.netlifyIdentity.on("login", () => {
-          document.location.href = "/admin/";
-        });
-      }
-    });
-  }
-</script>
-  <script>
-  // Fetch and display CMS articles
-  async function loadNews() {
-    try {
-      const response = await fetch('/_news/index.json'); // Netlify auto-generates this
-      const articles = await response.json();
-      
-      articles.forEach(article => {
-        const categorySection = document.querySelector(`.category-heading:contains("${article.category}")`)
-                              .closest('.category-block');
-        
-        categorySection.innerHTML += `
-          <article class="news-article ${article.featured ? 'featured' : ''}">
-            <h4>${article.title}</h4>
-            <p>${article.excerpt}</p>
-            <div class="article-meta">
-              © ${new Date(article.date).toLocaleDateString()} | ${article.read_time} min read
-            </div>
-            <a href="/_news/${article.slug}">Read more</a>
-          </article>
-        `;
-      });
-    } catch (error) {
-      console.error("Failed to load news:", error);
+  <style>
+    /* Add these styles to make elements clickable */
+    .news-article {
+      cursor: pointer;
+      transition: all 0.3s ease;
     }
-  }
-
-  // Initialize when page loads
-  document.addEventListener('DOMContentLoaded', loadNews);
-</script>
+    .news-article:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    .news-article a {
+      color: #CF0921;
+      text-decoration: none;
+      font-weight: bold;
+    }
+    .news-article a:hover {
+      text-decoration: underline;
+    }
+    .category-heading {
+      cursor: default; /* Keep headings non-clickable */
+    }
+  </style>
+</head>
 <body>
   <header>
     <div class="logo">
@@ -66,7 +47,7 @@
     </nav>
     <div class="search-bar">
       <input type="text" placeholder="Search news...">
-      <button>🔍</button>
+      <button onclick="searchNews()">🔍</button>
     </div>
   </header>
 
@@ -74,67 +55,89 @@
     <section class="news-section">
       <h2>Latest News</h2>
       
-      <!-- Politics Section -->
-      <div class="category-block">
-        <h3 class="category-heading">Politics</h3>
+      <!-- Dynamic Content Will Load Here -->
+      <div id="news-container">
+        <!-- Categories will be populated by JavaScript -->
+        <div class="category-block" id="politics">
+          <h3 class="category-heading">Politics</h3>
+        </div>
         
-        <article class="news-article featured">
-          <h4>President Announces Major Infrastructure Plan</h4>
-          <p>Ghana's president unveiled a comprehensive infrastructure development plan aimed at transforming the country's transportation network and stimulating economic growth.</p>
-          <div class="article-meta">© May 15, 2025 | 4 min read</div>
-        </article>
-
-        <article class="news-article">
-          <h4>Parliament Debates New Education Reform Bill</h4>
-          <p>Lawmakers engage in heated discussions over proposed changes to the national education curriculum that could reshape Ghana's schooling system.</p>
-          <div class="article-meta">© May 14, 2025 | 3 min read</div>
-        </article>
-
-        <article class="news-article">
-          <h4>Opposition Leader Calls for Transparency in Oil Revenue</h4>
-          <p>Demands grow for clearer accounting of petroleum revenues as fiscal watchdog groups express concerns.</p>
-          <div class="article-meta">© May 13, 2025 | 2 min read</div>
-        </article>
-      </div>
-
-      <!-- Sports Section -->
-      <div class="category-block">
-        <h3 class="category-heading">Sports</h3>
+        <div class="category-block" id="sports">
+          <h3 class="category-heading">Sports</h3>
+        </div>
         
-        <article class="news-article featured">
-          <h4>Black Stars Qualify for World Cup 2026</h4>
-          <p>Ghana's national football team secures spot in the upcoming World Cup after a thrilling victory against Nigeria in the qualifiers.</p>
-          <div class="article-meta">© May 15, 2025 | 5 min read</div>
-        </article>
-
-        <article class="news-article">
-          <h4>Local Athlete Breaks National 100m Record</h4>
-          <p>21-year-old sprinter sets new national record at the All-African Games, clocking an impressive 9.89 seconds.</p>
-          <div class="article-meta">© May 14, 2025 | 3 min read</div>
-        </article>
+        <div class="category-block" id="entertainment">
+          <h3 class="category-heading">Entertainment</h3>
+        </div>
       </div>
-
-      <!-- Entertainment Section -->
-      <div class="category-block">
-        <h3 class="category-heading">Entertainment</h3>
-        
-        <article class="news-article featured">
-          <h4>Rising Star Wins Best New Artist at Ghana Music Awards</h4>
-          <p>Emerging Afrobeat sensation takes home top honors at the annual awards ceremony, beating out several established acts.</p>
-          <div class="article-meta">© May 15, 2025 | 4 min read</div>
-        </article>
-
-        <article class="news-article">
-          <h4>New Nollywood-Ghana Collaboration Film Announced</h4>
-          <p>Joint production between Ghanaian and Nigerian filmmakers to begin shooting in Accra next month, featuring A-list actors from both countries.</p>
-          <div class="article-meta">© May 14, 2025 | 2 min read</div>
-        </article>
-      </div>
-
     </section>
   </main>
 
   <footer>&copy; 2025 GhanaPulse</footer>
-  <script src="js/search.js"></script>
+
+  <script>
+    // Enhanced news loader with click handlers
+    async function loadNews() {
+      try {
+        const categories = ['politics', 'sports', 'entertainment'];
+        
+        for (const category of categories) {
+          const response = await fetch(`/_news/${category}.json`);
+          if (!response.ok) continue;
+          
+          const articles = await response.json();
+          const container = document.getElementById(category);
+          
+          articles.forEach(article => {
+            const articleEl = document.createElement('article');
+            articleEl.className = `news-article ${article.featured ? 'featured' : ''}`;
+            articleEl.innerHTML = `
+              <h4><a href="/news/${article.slug}">${article.title}</a></h4>
+              <p>${article.excerpt || article.body.substring(0, 150)}...</p>
+              <div class="article-meta">
+                © ${new Date(article.date).toLocaleDateString()} | ${article.read_time} min read
+              </div>
+              <a href="/news/${article.slug}" class="read-more">Read full story →</a>
+            `;
+            
+            // Add click handler to entire article
+            articleEl.addEventListener('click', (e) => {
+              if (!e.target.closest('a')) {
+                window.location.href = `/news/${article.slug}`;
+              }
+            });
+            
+            container.appendChild(articleEl);
+          });
+        }
+      } catch (error) {
+        console.error("News loading failed:", error);
+        // Fallback to hardcoded content if API fails
+        document.getElementById('news-container').innerHTML = `
+          <!-- Your original hardcoded articles here -->
+        `;
+      }
+    }
+
+    // Initialize when page loads
+    document.addEventListener('DOMContentLoaded', () => {
+      loadNews();
+      
+      if (window.netlifyIdentity) {
+        window.netlifyIdentity.on("init", user => {
+          if (!user) {
+            window.netlifyIdentity.on("login", () => {
+              document.location.href = "/admin/";
+            });
+          }
+        });
+      }
+    });
+
+    function searchNews() {
+      const query = document.querySelector('.search-bar input').value;
+      window.location.href = `/search.html?q=${encodeURIComponent(query)}`;
+    }
+  </script>
 </body>
 </html>
