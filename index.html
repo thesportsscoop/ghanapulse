@@ -18,6 +18,36 @@
     });
   }
 </script>
+  <script>
+  // Fetch and display CMS articles
+  async function loadNews() {
+    try {
+      const response = await fetch('/_news/index.json'); // Netlify auto-generates this
+      const articles = await response.json();
+      
+      articles.forEach(article => {
+        const categorySection = document.querySelector(`.category-heading:contains("${article.category}")`)
+                              .closest('.category-block');
+        
+        categorySection.innerHTML += `
+          <article class="news-article ${article.featured ? 'featured' : ''}">
+            <h4>${article.title}</h4>
+            <p>${article.excerpt}</p>
+            <div class="article-meta">
+              © ${new Date(article.date).toLocaleDateString()} | ${article.read_time} min read
+            </div>
+            <a href="/_news/${article.slug}">Read more</a>
+          </article>
+        `;
+      });
+    } catch (error) {
+      console.error("Failed to load news:", error);
+    }
+  }
+
+  // Initialize when page loads
+  document.addEventListener('DOMContentLoaded', loadNews);
+</script>
 <body>
   <header>
     <div class="logo">
