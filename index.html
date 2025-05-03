@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GhanaPulse | Latest News</title>
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon" href="images/favicon.ico">
+</head>
+<script>
+  if (window.netlifyIdentity) {
+    window.netlifyIdentity.on("init", user => {
+      if (!user) {
+        window.netlifyIdentity.on("login", () => {
+          document.location.href = "/admin/";
+        });
+      }
+    });
+  }
+</script>
+<body>
+  <header>
+    <div class="logo">
+      <a href="index.html"><img src="images/logo.png" alt="GhanaPulse"></a>
+      <h1><a href="index.html">GhanaPulse</a></h1>
+    </div>
+    <nav>
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="politics.html">Politics</a></li>
+        <li><a href="sports.html">Sports</a></li>
+        <li><a href="entertainment.html">Entertainment</a></li>
+        <li><a href="about.html">About</a></li>
+        <li><a href="contact.html">Contact Us</a></li>
+      </ul>
+    </nav>
+    <div class="search-bar">
+      <input type="text" placeholder="Search news...">
+      <button>🔍</button>
+    </div>
+  </header>
+
+  <main>
+    <section class="news-section">
+      <h2>Latest News</h2>
+      
+      <!-- Politics Section -->
+      <div class="category-block">
+        <h3 class="category-heading">Politics</h3>
+        
+        <article class="news-article featured">
+          <h4>President Announces Major Infrastructure Plan</h4>
+          <p>Ghana's president unveiled a comprehensive infrastructure development plan aimed at transforming the country's transportation network and stimulating economic growth.</p>
+          <div class="article-meta">© May 15, 2025 | 4 min read</div>
+        </article>
+
+        <article class="news-article">
+          <h4>Parliament Debates New Education Reform Bill</h4>
+          <p>Lawmakers engage in heated discussions over proposed changes to the national education curriculum that could reshape Ghana's schooling system.</p>
+          <div class="article-meta">© May 14, 2025 | 3 min read</div>
+        </article>
+
+        <article class="news-article">
+          <h4>Opposition Leader Calls for Transparency in Oil Revenue</h4>
+          <p>Demands grow for clearer accounting of petroleum revenues as fiscal watchdog groups express concerns.</p>
+          <div class="article-meta">© May 13, 2025 | 2 min read</div>
+        </article>
+      </div>
+
+      <!-- Sports Section -->
+      <div class="category-block">
+        <h3 class="category-heading">Sports</h3>
+        
+        <article class="news-article featured">
+          <h4>Black Stars Qualify for World Cup 2026</h4>
+          <p>Ghana's national football team secures spot in the upcoming World Cup after a thrilling victory against Nigeria in the qualifiers.</p>
+          <div class="article-meta">© May 15, 2025 | 5 min read</div>
+        </article>
+
+        <article class="news-article">
+          <h4>Local Athlete Breaks National 100m Record</h4>
+          <p>21-year-old sprinter sets new national record at the All-African Games, clocking an impressive 9.89 seconds.</p>
+          <div class="article-meta">© May 14, 2025 | 3 min read</div>
+        </article>
+      </div>
+
+      <!-- Entertainment Section -->
+      <div class="category-block">
+        <h3 class="category-heading">Entertainment</h3>
+        
+        <article class="news-article featured">
+          <h4>Rising Star Wins Best New Artist at Ghana Music Awards</h4>
+          <p>Emerging Afrobeat sensation takes home top honors at the annual awards ceremony, beating out several established acts.</p>
+          <div class="article-meta">© May 15, 2025 | 4 min read</div>
+        </article>
+
+        <article class="news-article">
+          <h4>New Nollywood-Ghana Collaboration Film Announced</h4>
+          <p>Joint production between Ghanaian and Nigerian filmmakers to begin shooting in Accra next month, featuring A-list actors from both countries.</p>
+          <div class="article-meta">© May 14, 2025 | 2 min read</div>
+        </article>
+      </div>
+
+    </section>
+  </main>
+
+  <footer>&copy; 2025 GhanaPulse</footer>
+  <script src="js/search.js"></script>
+</body>
+</html>
