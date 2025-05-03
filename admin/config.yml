@@ -42,7 +42,3 @@ collections:
         fields:
           - { name: "title", label: "Title", widget: "string" }
           - { name: "body", label: "Content", widget: "markdown" }
-          collections:
-  - name: "news"
-    # ... keep existing fields ...
-    meta: { path: "{{slug}}" }  # Critical for JSON API
