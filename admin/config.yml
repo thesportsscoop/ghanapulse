@@ -22,7 +22,7 @@ collections:
     create: true
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     editor:
-      preview: false
+      preview: true
     fields:
       - { name: "title", label: "Headline", widget: "string" }
       - { name: "author", label: "Author", widget: "string", default: "GhanaPulse Staff" }
