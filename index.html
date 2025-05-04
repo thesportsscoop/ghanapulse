@@ -73,6 +73,43 @@
   <main>
     <section class="news-section">
       <h2>Latest News</h2>
+      <!-- Example placement in your HTML file -->
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Your Site</title>
+    <!-- Your existing head content -->
+</head>
+<body>
+    <!-- Your existing header/navigation -->
+    
+    <section class="news-section">
+        <h1>Latest News</h1>
+        <div id="news-posts"></div>  <!-- This is where posts will appear -->
+    </section>
+
+    <!-- Your existing footer -->
+
+    <!-- Add the script just before closing body tag -->
+    <script>
+      fetch('_news/index.json')
+        .then(res => res.json())
+        .then(posts => {
+          const container = document.getElementById('news-posts');
+          posts.forEach(post => {
+            container.innerHTML += `
+              <article class="news-post">
+                <h2>${post.title}</h2>
+                <p class="post-date">Published: ${post.date}</p>
+                <div class="post-content">${post.body}</div>
+              </article>
+            `;
+          });
+        })
+        .catch(error => console.error('Error loading news:', error));
+    </script>
+</body>
+</html>
       
       <!-- Politics Section -->
       <div class="category-block">
