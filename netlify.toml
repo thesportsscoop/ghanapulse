@@ -1,32 +1,29 @@
 [build]
-  command = "npm install netlify-plugin-json && echo 'JSON generation enabled'"
+  command = "echo 'Skipping build for static site'"
   publish = "."
 
 [build.environment]
-  NODE_VERSION = "18"  # Required for plugin support
+  NODE_VERSION = "20"  # Changed to latest LTS version (critical fix)
 
-# Required for JSON generation
+# Simplified plugin declaration (no installation needed)
 [[plugins]]
-  package = "netlify-plugin-json"
+  package = "@netlify/plugin-json-data"  # Official alternative
   [plugins.inputs]
-    directories = ["_news"]  # Processes your CMS folder
-    indent = 2              # Clean JSON formatting
+    paths = ["_news/*.md"]  # Explicit file pattern
 
-# Essential CMS redirects
+# Required CMS redirects (unchanged)
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
   status = 200
 
-# Client-side routing support (optional)
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-# Performance headers
-[headers]
-  [headers."/_news/*.json"]
+# Fixed headers syntax (array format)
+[[headers]]
+  for = "/_news/*.json"
+  [headers.values]
     cache-control = "public, max-age=3600"
-  [headers."/img/uploads/*"]
+
+[[headers]]
+  for = "/img/uploads/*"
+  [headers.values]
     cache-control = "public, max-age=86400"
