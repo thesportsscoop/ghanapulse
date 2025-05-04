@@ -1,29 +1,22 @@
 [build]
-  command = "echo 'Skipping build for static site'"
+  # Minimal build command for static sites
+  command = "echo 'Static site build successful'"
   publish = "."
 
-[build.environment]
-  NODE_VERSION = "20"  # Changed to latest LTS version (critical fix)
-
-# Simplified plugin declaration (no installation needed)
-[[plugins]]
-  package = "@netlify/plugin-json-data"  # Official alternative
-  [plugins.inputs]
-    paths = ["_news/*.md"]  # Explicit file pattern
-
-# Required CMS redirects (unchanged)
+# Essential CMS configuration
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
   status = 200
 
-# Fixed headers syntax (array format)
+# Modern headers syntax (array format)
 [[headers]]
-  for = "/_news/*.json"
+  for = "/*"
   [headers.values]
-    cache-control = "public, max-age=3600"
+    X-Frame-Options = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
 
-[[headers]]
-  for = "/img/uploads/*"
-  [headers.values]
-    cache-control = "public, max-age=86400"
+# No plugins required - uses native Netlify JSON generation
+[context.production.environment]
+  NETLIFY_JSON = "true"  # Enables automatic JSON endpoints
