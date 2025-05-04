@@ -1,13 +1,1 @@
-[build]
-  command = "echo 'Static site build complete'"
-  publish = "."
 
-[[redirects]]
-  from = "/admin/*"
-  to = "/admin/index.html"
-  status = 200
-
-[headers]
-  [[headers.values]]
-    for = "/*"
-    cache-control = "public, max-age=3600"
