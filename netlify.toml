@@ -1,22 +1,13 @@
 [build]
-  # Minimal build command for static sites
-  command = "echo 'Static site build successful'"
+  command = "echo 'Static site build complete'"
   publish = "."
 
-# Essential CMS configuration
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
   status = 200
 
-# Modern headers syntax (array format)
-[[headers]]
-  for = "/*"
-  [headers.values]
-    X-Frame-Options = "DENY"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-
-# No plugins required - uses native Netlify JSON generation
-[context.production.environment]
-  NETLIFY_JSON = "true"  # Enables automatic JSON endpoints
+[headers]
+  [[headers.values]]
+    for = "/*"
+    cache-control = "public, max-age=3600"
