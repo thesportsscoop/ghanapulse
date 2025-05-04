@@ -1,33 +1,8 @@
 [build]
-  command = "echo 'No build command needed for static site' && exit 0"
+  command = "echo 'Static site build'"
   publish = "."
 
-[build.environment]
-  NODE_VERSION = "18"  # Optional but recommended for plugin support
-
-# Required for Netlify CMS JSON output
-[[plugins]]
-  package = "netlify-plugin-json"
-  [plugins.inputs]
-    directories = ["_news"]  # Tells the plugin to process your news folder
-
-# Required for Netlify CMS redirects
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
   status = 200
-
-# Required for SPA (Single Page Application) routing if using client-side JS
-[[redirects]]
-  from = "/*"
-  to = "/index.html"
-  status = 200
-
-# Optional: Cache settings (improves load times)
-[headers]
-  [headers."/_news/*"]
-    cache-control = '''
-    public,
-    max-age=3600,
-    must-revalidate
-    '''
