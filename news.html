@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>News | Ghana Pulse</title>
+</head>
+<body>
+  <h1>Latest News</h1>
+  <div id="news-container"></div>
+
+  <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+  <script>
+    // This is a very basic example that fetches and displays markdown files
+    async function loadNews() {
+      const container = document.getElementById("news-container");
+      const posts = ["sample-post.md"]; // Replace with your actual filenames
+
+      for (const post of posts) {
+        const res = await fetch(`/_news/${post}`);
+        const text = await res.text();
+        const html = marked.parse(text);
+        const article = document.createElement("article");
+        article.innerHTML = html;
+        container.appendChild(article);
+      }
+    }
+
+    loadNews();
+  </script>
+</body>
+</html>
