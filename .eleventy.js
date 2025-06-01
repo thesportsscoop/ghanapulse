@@ -3,7 +3,7 @@ const { DateTime } = require("luxon"); // Import Luxon for advanced date formatt
 
 module.exports = function(eleventyConfig) {
     // Pass through static assets like images, CSS, JS, and favicon
-    eleventyConfig.addPassthroughCopy("src/assets");
+    eleventyConfig.addPassthroughCopy({ "src/assets": "assets" });
     eleventyConfig.addPassthroughCopy("src/netlify-cms"); // Copy CMS files
     eleventyConfig.addPassthroughCopy("src/admin");     // Copy CMS config
 
