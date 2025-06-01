@@ -1,0 +1,53 @@
+---
+layout: base.njk
+title: Home
+permalink: /index.html
+eleventyNavigation:
+  key: Home
+  order: 1
+---
+<section class="latest-news-section">
+    <h2>Latest News</h2>
+    <div class="news-grid">
+        {% for post in collections.posts | sortByDate %}
+            {% if loop.index <= 6 %}
+                {% set currentPost = post %}
+                {% include "news-widget.njk" %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>
+
+<section class="category-news-section">
+    <h2>Category News</h2>
+    
+    <h3>Politics</h3>
+    <div class="news-grid">
+        {% for post in collections.posts | filterByCategory("politics") | sortByDate %}
+            {% if loop.index <= 3 %}
+                {% set currentPost = post %}
+                {% include "news-widget.njk" %}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <h3>Entertainment</h3>
+    <div class="news-grid">
+        {% for post in collections.posts | filterByCategory("entertainment") | sortByDate %}
+            {% if loop.index <= 3 %}
+                {% set currentPost = post %}
+                {% include "news-widget.njk" %}
+            {% endif %}
+        {% endfor %}
+    </div>
+
+    <h3>Sports</h3>
+    <div class="news-grid">
+        {% for post in collections.posts | filterByCategory("sports") | sortByDate %}
+            {% if loop.index <= 3 %}
+                {% set currentPost = post %}
+                {% include "news-widget.njk" %}
+            {% endif %}
+        {% endfor %}
+    </div>
+</section>

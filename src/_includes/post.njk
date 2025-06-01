@@ -1,0 +1,21 @@
+---
+layout: base.njk
+permalink: /post/{{ title | slug }}/ # Creates URL like /post/my-news-title/
+---
+<div class="post-detail-page">
+    <h1>{{ title | capitalize }}</h1> {# Applies the capitalize filter for title styling #}
+    
+    {% if image %}
+        <figure>
+            <img src="{{ image }}" alt="{{ image_alt }}" class="post-image-detail">
+            {% if image_alt %} {# Displays the caption if image_alt is provided #}
+                <figcaption>{{ image_alt }}</figcaption>
+            {% endif %}
+        </figure>
+    {% endif %}
+
+    <div class="post-content">
+        {{ content | safe }}
+    </div>
+    <button onclick="history.back()" class="read-more" style="margin-top: 20px;">Back to News</button>
+</div>

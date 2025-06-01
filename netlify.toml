@@ -1,0 +1,16 @@
+[build]
+  publish = "_site"     # Eleventy's default output directory
+  command = "npm run build" # Command to run your Eleventy build
+
+[[redirects]]
+  from = "/admin/*"
+  to = "/netlify-cms/index.html"
+  status = 200
+
+# This ensures all paths are handled by Eleventy generated files
+# For example, /politics will serve /politics/index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+  force = true # Ensures this redirect happens even if a file exists (for SPAs or specific edge cases)

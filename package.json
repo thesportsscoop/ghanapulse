@@ -1,0 +1,17 @@
+{
+  "name": "ghanapulse",
+  "version": "1.0.0",
+  "description": "GhanaPulse News Website using Eleventy and Netlify CMS",
+  "main": "index.js",
+  "scripts": {
+    "start": "eleventy --serve",
+    "build": "eleventy",
+    "debug": "DEBUG=Eleventy* eleventy"
+  },
+  "keywords": [],
+  "author": "Your Name/Organization",
+  "license": "MIT",
+  "devDependencies": {
+    "@11ty/eleventy": "^2.0.1"
+  }
+}

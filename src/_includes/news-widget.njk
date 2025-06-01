@@ -1,0 +1,12 @@
+<div class="news-widget">
+    <a href="{{ post.url }}">
+        <img src="{{ post.data.image }}" alt="{{ post.data.image_alt }}" class="news-widget-image">
+    </a>
+    <div class="news-widget-content">
+        <a href="{{ post.url }}" class="news-widget-title">
+            <h3>{{ post.data.title }}</h3>
+        </a>
+        <p class="news-widget-excerpt">{{ post.data.excerpt }}</p>
+        <a href="{{ post.url }}" class="read-more">Read More</a>
+    </div>
+</div>

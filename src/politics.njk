@@ -1,0 +1,17 @@
+---
+layout: base.njk
+title: Politics
+permalink: /politics/index.html
+eleventyNavigation:
+  key: Politics
+  order: 2
+---
+<section class="category-page-content">
+  <h2>Politics News</h2>
+  <div class="news-grid">
+    {% set politicsPosts = collections.posts | filterByCategory("politics") | sortByDate %}
+    {% for post in politicsPosts %}
+      {% include "news-widget.njk" %}
+    {% endfor %}
+  </div>
+</section>

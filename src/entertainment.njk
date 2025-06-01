@@ -1,0 +1,17 @@
+---
+layout: base.njk
+title: Entertainment
+permalink: /entertainment/index.html
+eleventyNavigation:
+  key: Entertainment
+  order: 2
+---
+<section class="category-page-content">
+    <h2>Entertainment News</h2>
+    <div class="news-grid">
+        {% for post in collections.posts | filterByCategory("entertainment") | sortByDate %}
+            {% set currentPost = post %}
+            {% include "news-widget.njk" %}
+        {% endfor %}
+    </div>
+</section>

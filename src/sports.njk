@@ -1,0 +1,17 @@
+---
+layout: base.njk
+title: Sports
+permalink: /sports/index.html
+eleventyNavigation:
+  key: Sports
+  order: 2
+---
+<section class="category-page-content">
+  <h2>Sports News</h2>
+  <div class="news-grid">
+    {% set sportsPosts = collections.posts | filterByCategory("sports") | sortByDate %}
+    {% for post in sportsPosts %}
+      {% include "news-widget.njk" %}
+    {% endfor %}
+  </div>
+</section>
