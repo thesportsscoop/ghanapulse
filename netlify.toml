@@ -10,6 +10,7 @@
   from = "/admin/*"
   to = "/admin/index.html"
   status = 200
+  force = true
 
 # Redirect all other routes to Eleventy's index.html
 [[redirects]]
