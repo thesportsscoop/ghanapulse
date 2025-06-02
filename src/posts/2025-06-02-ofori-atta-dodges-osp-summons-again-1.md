@@ -12,8 +12,7 @@ excerpt: For the second time, former Finance Minister Ken Ofori-Atta has failed
 title: "Ofori-Atta Dodges OSP Summons Again"
 layout: post.njk
 date: "2025-06-01"
-category: "P
-olitics"
+category: "Politics"
 image: "/assets/images/uploads"
 image_alt: "Ken Ofori-Atta and the Special prosecutor"
 excerpt: For the second time, former Finance Minister Ken Ofori-Atta has failed to - - -
