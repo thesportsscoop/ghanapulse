@@ -1,11 +1,18 @@
-<!doctype html>
-<html>
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Content Manager</title>
-</head>
-<body>
-  <script src="https://unpkg.com/netlify-cms@^2.0.0/dist/netlify-cms.js"></script>
-</body>
-</html>
+[build]
+  publish = "_site"              # Eleventy's output directory
+  command = "npm run build"      # Your build command
+
+[build.environment]
+  NODE_VERSION = "18"            # Ensure compatible Node version
+
+# Redirect for Netlify CMS
+[[redirects]]
+  from = "/admin/*"
+  to = "/admin/index.html"
+  status = 200
+
+# Redirect all other routes to Eleventy's index.html
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
