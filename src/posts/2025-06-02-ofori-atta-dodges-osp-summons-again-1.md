@@ -1,6 +1,7 @@
 ---
 title: Ofori-Atta Dodges OSP Summons Again
 date: 2025-06-02
+layout: post.njk
 category: politics
 image: /assets/images/uploads/ofori-atta.jpg
 image_alt: Ken Ofori-Atta and the Special prosecutor
@@ -8,14 +9,6 @@ excerpt: For the second time, former Finance Minister Ken Ofori-Atta has failed
   to appear before the Office of the Special Prosecutor (OSP), this time citing
   undisclosed health reasons.
 ---
-- - -
-title: "Ofori-Atta Dodges OSP Summons Again"
-layout: post.njk
-date: "2025-06-01"
-category: "Politics"
-image: "/assets/images/uploads"
-image_alt: "Ken Ofori-Atta and the Special prosecutor"
-excerpt: For the second time, former Finance Minister Ken Ofori-Atta has failed to - - -
 
 Former Finance Minister Ken Ofori-Atta has reportedly failed to appear before the Office of the Special Prosecutor (OSP) for the second time, citing undisclosed health concerns. His lawyer, Frank Davies, confirmed the absence, claiming his client was medically unfit to attend the scheduled interrogation on June 2.  
 
